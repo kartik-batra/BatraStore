@@ -1,0 +1,40 @@
+{% extends "app/profilebase.html" %}
+{% block title %}Saved Addresses{% endblock title %}
+{% block li3 %}
+<li class="d-grid py-1" style="height: 55px;"><a style="text-align: left; padding-top: 5%;background-color:#212529;color: white;" href="{% url 'profile' %}" class="btn">Saved Addresses</a></li>
+{% endblock li3 %}
+
+{% block body-content %}
+    <div class="col-sm-9 offset-sm-1">
+        <div class="row">
+            {% for ad in add %}
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center text-black">Address {{forloop.counter}} </h3>
+                        <hr class="border-info border border-2">
+                        <h6 class="my-3"><span class="fw-bold"> Name</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="text-danger fw-bold">:</span> {{ad.name}} </h6>
+                        <h6 class="my-3"><span class="fw-bold"> Locality</span> &nbsp; &nbsp; &nbsp; &nbsp;<span class="text-danger fw-bold">:</span> {{ad.locality}} </h6>
+                        <h6 class="my-3"><span class="fw-bold"> City</span>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="text-danger fw-bold">:</span> {{ad.city}} </h6>
+                        <h6 class="my-3"><span class="fw-bold"> State</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="text-danger fw-bold">:</span> {{ad.state}} </h6>
+                        <h6 class="my-3"><span class="fw-bold"> Pin/Zipcode</span><span class="text-danger fw-bold"> : </span> {{ad.zipcode}} </h6>
+                    </div>
+                    <form action="/delete_address" class="d-inline p-3 pt-1" >
+                        <input type="hidden" name="name" value="{{ad.name}}" id="name">
+                        <input type="hidden" name="locality" value="{{ad.locality}}" id="locality">
+                        <input type="hidden" name="city" value="{{ad.city}}" id="city">
+                        <input type="hidden" name="state" value="{{ad.state}}" id="state">
+                        <input type="hidden" name="zipcode" value="{{ad.zipcode}}" id="zipcode">
+                        <button type="submit" class="btn-dark shadow px-5 py-2">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% empty %}
+            <h2>There are no saved addresses ...</h2>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body-content %}
+
+
+

@@ -1,0 +1,19 @@
+{% extends "app/profilebase.html" %}
+{% block li1 %}
+<li class="d-grid py-1" style="height: 55px;"><a style="text-align: left; padding-top: 5%;background-color:#212529;color: white;" href="{% url 'profile' %}" class="btn">Profile</a></li>
+{% endblock li1 %}
+
+{% block body-content %}
+    <div class="col-sm-8 offset-sm-1">
+        {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class="alert alert-{{message.tages}} mb-5 bg-success" {% endif %}>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        <br>
+        <h3>Name : {{profile.first_name}} {{profile.last_name}}</h3><br>
+        <h3>Email : {{profile.email}}</h3><br>
+        <h3>Username : {{profile.username}}</h3><br>
+        <h3>Date Joined : {{profile.date_joined}}</h3>
+    </div>
+{% endblock body-content %}
